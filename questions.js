@@ -1,5 +1,4 @@
-// questions.js - 題庫數據文件
-// 從PDF轉換而來的題庫
+
 const questions = [
     {
         id: 1,
@@ -1525,11 +1524,8 @@ const questions = [
         answer: "B",
         explanation: "在非對稱加密中，私鑰由其所有者保密，用於解密使用相應公鑰加密的數據，或用於創建數字簽名。公鑰可以公開共享。"
     }
-    // 繼續添加更多題目...
 ];
 
-// 如果獨立的 app.js 文件不存在，則此處也可包含應用程序的邏輯
-// 請確保輸出格式，以便將數據導出給主應用程序使用
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = questions;
 }

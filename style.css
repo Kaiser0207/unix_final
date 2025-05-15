@@ -1,4 +1,3 @@
-/* 隨機題目練習程式的 CSS 樣式 */
 
 body {
     font-family: 'Microsoft JhengHei', Arial, sans-serif;
@@ -37,7 +36,6 @@ h1 {
     line-height: 1.5;
 }
 
-/* 選項的基本樣式 */
 .option {
     position: relative;
     padding: 10px 15px;
@@ -48,13 +46,11 @@ h1 {
     transition: all 0.3s ease;
 }
 
-/* 選項被選中時的樣式 */
 .option.selected {
     border-color: #4CAF50; /* 綠色邊框 */
     background-color: rgba(76, 175, 80, 0.1); /* 淡綠色背景 */
 }
 
-/* 鼠標懸停效果 */
 .option:hover {
     border-color: #2196F3; /* 藍色邊框 */
     background-color: rgba(33, 150, 243, 0.1); /* 淡藍色背景 */
