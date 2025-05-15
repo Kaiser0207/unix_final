@@ -1,0 +1,140 @@
+/* 隨機題目練習程式的 CSS 樣式 */
+
+body {
+    font-family: 'Microsoft JhengHei', Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+.container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+#progress {
+    text-align: right;
+    font-size: 14px;
+    color: #7f8c8d;
+    margin-bottom: 20px;
+}
+
+#question-text {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* 選項的基本樣式 */
+.option {
+    position: relative;
+    padding: 10px 15px;
+    margin: 10px 0;
+    cursor: pointer;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* 選項被選中時的樣式 */
+.option.selected {
+    border-color: #4CAF50; /* 綠色邊框 */
+    background-color: rgba(76, 175, 80, 0.1); /* 淡綠色背景 */
+}
+
+/* 鼠標懸停效果 */
+.option:hover {
+    border-color: #2196F3; /* 藍色邊框 */
+    background-color: rgba(33, 150, 243, 0.1); /* 淡藍色背景 */
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+}
+
+label {
+    cursor: pointer;
+}
+
+button {
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+#next-button, #restart-button {
+    display: none;
+}
+
+#result-container {
+    display: none;
+    text-align: center;
+    padding: 30px;
+}
+
+#score-display {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.option.correct {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.option.wrong {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+#explanation {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-left: 5px solid #3498db;
+    display: none;
+}
+
+.button-container {
+    margin-top: 30px;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    button {
+        width: 100%;
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+}
