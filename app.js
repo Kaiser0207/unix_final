@@ -152,6 +152,49 @@ function finishQuiz() {
     resultContainer.style.display = 'block';
     scoreDisplay.textContent = `你的得分：${score} / ${selectedQuestions.length}`;
 
+    // 顯示歷史記錄容器
+    const historyContainer = document.getElementById('history-container');
+    historyContainer.style.display = 'block';
+
+    // 獲取答題歷史區域
+    const answerHistory = document.getElementById('answer-history');
+    answerHistory.innerHTML = '';
+
+    // 遍歷所有已答題目
+    selectedQuestions.forEach((question, index) => {
+        const historyItem = document.createElement('div');
+        historyItem.className = `history-item`;
+
+        // 題目內容
+        const questionDiv = document.createElement('div');
+        questionDiv.className = 'history-question';
+        questionDiv.textContent = `${index + 1}. ${question.q}`;
+
+        // 選項列表
+        const optionsDiv = document.createElement('div');
+        optionsDiv.className = 'history-options';
+        Object.entries(question.options).forEach(([key, value]) => {
+            const optionText = document.createElement('div');
+            if (key === question.answer) {
+                optionText.textContent = `${key}: ${value} (正確答案)`;
+                optionText.style.color = '#4CAF50';
+            } else {
+                optionText.textContent = `${key}: ${value}`;
+            }
+            optionsDiv.appendChild(optionText);
+        });
+
+        // 解釋
+        const explanationDiv = document.createElement('div');
+        explanationDiv.className = 'history-answer';
+        explanationDiv.textContent = `解釋：${question.explanation}`;
+
+        historyItem.appendChild(questionDiv);
+        historyItem.appendChild(optionsDiv);
+        historyItem.appendChild(explanationDiv);
+        answerHistory.appendChild(historyItem);
+    });
+
     document.getElementById('restart-button').style.display = 'block';
 }
 
