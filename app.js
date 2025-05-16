@@ -220,28 +220,23 @@ function finishQuiz() {
     document.getElementById('restart-button').style.display = 'block';
 }
 
+document.getElementById('restart-button').addEventListener('click', () => {
+    // 隱藏結果和歷史記錄
+    resultContainer.style.display = 'none';
+    document.getElementById('history-container').style.display = 'none';
+
+    // 清空答題歷史
+    document.getElementById('answer-history').innerHTML = '';
+
+    // 顯示題目容器
+    questionContainer.style.display = 'block';
+
+    // 重新初始化測驗
+    initializeQuiz();
+});
+
 function updateProgress() {
     progress.textContent = `題目 ${currentQuestionIndex + 1} / ${selectedQuestions.length}`;
 }
 
-function createOptions(options, answer) {
-    const optionsContainer = document.getElementById('options-container');
-    optionsContainer.innerHTML = '';
 
-    Object.keys(options).forEach(key => {
-        const optionDiv = document.createElement('div');
-        optionDiv.className = 'option';
-        optionDiv.textContent = `${key}. ${options[key]}`;
-
-        optionDiv.addEventListener('click', function() {
-            document.querySelectorAll('.option').forEach(opt => {
-                opt.classList.remove('selected');
-            });
-
-            this.classList.add('selected');
-            checkAnswer(key, answer);
-        });
-
-        optionsContainer.appendChild(optionDiv);
-    });
-}
