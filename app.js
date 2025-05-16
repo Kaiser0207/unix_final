@@ -13,6 +13,7 @@ let selectedQuestions = [];
 let score = 0;
 let answered = false;
 let totalQuestions = 10;
+let userAnswers = [];
 
 document.addEventListener('DOMContentLoaded', () => {
     questionContainer = document.getElementById('question-container');
@@ -41,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function initializeQuiz() {
     score = 0;
     answered = false;
+    userAnswers = [];
 
     if (!questions || questions.length === 0) {
         alert('題庫數據未載入！請確保 questions.js 文件正確設置。');
@@ -108,6 +110,7 @@ function submitAnswer() {
     answered = true;
     const currentQuestion = selectedQuestions[currentQuestionIndex];
     const isCorrect = selectedOption.value === currentQuestion.answer;
+    userAnswers[currentQuestionIndex] = selectedOption.value;
 
     if (isCorrect) {
         score++;
@@ -178,15 +181,8 @@ function finishQuiz() {
         const optionsDiv = document.createElement('div');
         optionsDiv.className = 'history-options';
 
-        // 獲取該題的選擇
-        const options = document.querySelectorAll('.option');
-        let userAnswer = null;
-        options.forEach(option => {
-            const input = option.querySelector('input');
-            if (input && input.checked) {
-                userAnswer = input.value;
-            }
-        });
+        const userAnswer = userAnswers[index];
+        // 獲取該題的選
 
         Object.entries(question.options).forEach(([key, value]) => {
             const optionText = document.createElement('div');
