@@ -161,6 +161,7 @@ function finishQuiz() {
     answerHistory.innerHTML = '';
 
     // 遍歷所有已答題目
+    // 遍歷所有已答題目
     selectedQuestions.forEach((question, index) => {
         const historyItem = document.createElement('div');
         historyItem.className = 'history-item';
@@ -175,18 +176,30 @@ function finishQuiz() {
         optionsDiv.className = 'history-options';
 
         // 獲取該題的選擇
-        const selectedOption = document.querySelector(`#question-${index} input[name="quiz-option"]:checked`);
-        const userAnswer = selectedOption ? selectedOption.value : null;
+        const options = document.querySelectorAll('.option');
+        let userAnswer = null;
+        options.forEach(option => {
+            const input = option.querySelector('input');
+            if (input && input.checked) {
+                userAnswer = input.value;
+            }
+        });
 
         Object.entries(question.options).forEach(([key, value]) => {
             const optionText = document.createElement('div');
-            if (key === question.answer) {
-                // 正確答案顯示綠色
+            optionText.className = 'history-option';
+
+            if (key === question.answer && key === userAnswer) {
+                // 選擇正確
+                optionText.textContent = `${key}: ${value} (正確答案✓)`;
+                optionText.style.color = '#4CAF50';
+            } else if (key === question.answer) {
+                // 正確答案
                 optionText.textContent = `${key}: ${value} (正確答案)`;
                 optionText.style.color = '#4CAF50';
             } else if (key === userAnswer) {
-                // 錯誤選擇顯示紅色
-                optionText.textContent = `${key}: ${value} (你的選擇)`;
+                // 錯誤選擇
+                optionText.textContent = `${key}: ${value} (你的選擇✗)`;
                 optionText.style.color = '#f44336';
             } else {
                 optionText.textContent = `${key}: ${value}`;
@@ -204,7 +217,6 @@ function finishQuiz() {
         historyItem.appendChild(explanationDiv);
         answerHistory.appendChild(historyItem);
     });
-
     document.getElementById('restart-button').style.display = 'block';
 }
 
