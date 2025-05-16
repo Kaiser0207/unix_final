@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
     submitButton.addEventListener('click', submitAnswer);
     nextButton.addEventListener('click', nextQuestion);
     document.getElementById('restart-button').addEventListener('click', () => {
+        resultContainer.style.display = 'none';
+        document.getElementById('history-container').style.display = 'none';
+        document.getElementById('answer-history').innerHTML = '';
         questionContainer.style.display = 'block';
         initializeQuiz();
     });
@@ -219,21 +222,6 @@ function finishQuiz() {
     });
     document.getElementById('restart-button').style.display = 'block';
 }
-
-document.getElementById('restart-button').addEventListener('click', () => {
-    // 隱藏結果和歷史記錄
-    resultContainer.style.display = 'none';
-    document.getElementById('history-container').style.display = 'none';
-
-    // 清空答題歷史
-    document.getElementById('answer-history').innerHTML = '';
-
-    // 顯示題目容器
-    questionContainer.style.display = 'block';
-
-    // 重新初始化測驗
-    initializeQuiz();
-});
 
 function updateProgress() {
     progress.textContent = `題目 ${currentQuestionIndex + 1} / ${selectedQuestions.length}`;
