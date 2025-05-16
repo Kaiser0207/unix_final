@@ -163,21 +163,31 @@ function finishQuiz() {
     // 遍歷所有已答題目
     selectedQuestions.forEach((question, index) => {
         const historyItem = document.createElement('div');
-        historyItem.className = `history-item`;
+        historyItem.className = 'history-item';
 
         // 題目內容
         const questionDiv = document.createElement('div');
         questionDiv.className = 'history-question';
-        questionDiv.textContent = `${index + 1}. ${question.q}`;
+        questionDiv.textContent = `${index + 1}.  \ <${question.id}>\  ${question.q}`;
 
         // 選項列表
         const optionsDiv = document.createElement('div');
         optionsDiv.className = 'history-options';
+
+        // 獲取該題的選擇
+        const selectedOption = document.querySelector(`#question-${index} input[name="quiz-option"]:checked`);
+        const userAnswer = selectedOption ? selectedOption.value : null;
+
         Object.entries(question.options).forEach(([key, value]) => {
             const optionText = document.createElement('div');
             if (key === question.answer) {
+                // 正確答案顯示綠色
                 optionText.textContent = `${key}: ${value} (正確答案)`;
                 optionText.style.color = '#4CAF50';
+            } else if (key === userAnswer) {
+                // 錯誤選擇顯示紅色
+                optionText.textContent = `${key}: ${value} (你的選擇)`;
+                optionText.style.color = '#f44336';
             } else {
                 optionText.textContent = `${key}: ${value}`;
             }
