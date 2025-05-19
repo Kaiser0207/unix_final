@@ -62,9 +62,18 @@ function initializeQuiz() {
     scoreDisplay.textContent = '';
 }
 
+let usedQuestionIds = new Set();
+
 function getRandomQuestions(count) {
-    const shuffled = [...questions].sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, count);
+    if (usedQuestionIds.size >= questions.length) {
+        usedQuestionIds.clear();
+    }
+    const availableQuestions = questions.filter(q => !usedQuestionIds.has(q.id));
+    const shuffled = [...availableQuestions].sort(() => 0.5 - Math.random());
+    const selected = shuffled.slice(0, count);
+    selected.forEach(q => usedQuestionIds.add(q.id));
+
+    return selected;
 }
 
 function displayQuestion() {

@@ -873,8 +873,8 @@ const questions = [
             C: "ps can be used to identify processes that use excessive CPU time",
             D: "top is more accurate than ps for process monitoring"
         },
-        answer: "A",
-        explanation: "這個問題似乎有誤，選項與問題不匹配。根據選項內容，問題應該是關於進程監控的。ps命令可以顯示基本的進程信息，而top命令可以提供實時更新的更詳細的進程信息。"
+        answer: "C",
+        explanation: "ps 可用於分析進程的 CPU 使用情況，而top命令可以提供實時更新的更詳細的進程信息。"
     },
     {
         id: 74,
